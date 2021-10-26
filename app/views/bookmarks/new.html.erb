@@ -1,0 +1,29 @@
+<h1>Bookmarks#new</h1>
+<p>Find me in app/views/bookmarks/new.html.erb</p>
+
+@bookmark = Bookmark.new
+@list = List.new(list_params)
+@movies = Bookmark.all
+
+<!-- app/views/reviews/new.html.erb -->
+
+<%= simple_form_for @list do |f| %>
+  <%= f.input :name %>
+  <%= f.submit "Submit list", class: "btn btn-primary" %>
+<% end %>
+<%= redirect_to new_list_bookmark(@bookmark) %>
+
+
+<h2> My tasks </>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <%= link_to task.title, task_path(task) %>
+      <%= link_to '&#128465;'.html_safe,
+            task_path(task),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Add a new task", new_task_path %>
